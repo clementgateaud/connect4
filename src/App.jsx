@@ -38,7 +38,7 @@ export const App = () => {
       </h1>
       {winner && (
         <button className={styles.button} onClick={resetGame}>
-          Restart Game
+          Rejouer
         </button>
       )}
       <Grid handleCaseClick={handleCaseClick} grid={grid} />
