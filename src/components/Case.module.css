@@ -1,4 +1,8 @@
 .main {
+  background-color: blue;
+}
+
+.circle {
   aspect-ratio: 1;
   background-color: white;
   border-radius: 50%;
