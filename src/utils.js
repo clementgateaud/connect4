@@ -1,0 +1,28 @@
+import { WINNING_COMBINATIONS } from "./enums";
+
+export const getCaseToFill = (index, grid) => {
+  // set all the column cases in an array
+  const columnCases = [];
+  const column = index % 7;
+  for (let i = 0; i < 6; i++) {
+    columnCases.push(column + 7 * i);
+  }
+  // return first case from the bottom that is null
+  return columnCases.reverse().find((index) => !grid[index]);
+};
+
+export const whoIsTheWinner = (grid) => {
+  const winningCombination = WINNING_COMBINATIONS.find((combination) => {
+    const realValuesArray = [];
+    combination.forEach((element) => {
+      realValuesArray.push(grid[element]);
+    });
+    return realValuesArray.every(
+      (element) => element === realValuesArray[0] && element !== null
+    );
+  });
+
+  const winner = winningCombination ? grid[winningCombination[0]] : null;
+
+  return { winningCombination, winner };
+};
