@@ -9,8 +9,7 @@ export const App = () => {
   const [winner, setWinner] = useState(null);
 
   useEffect(() => {
-    //check if winner
-    const { winningCombination, winner } = whoIsTheWinner(grid);
+    const { winner } = whoIsTheWinner(grid);
     setWinner(winner);
   }, [grid]);
 
@@ -25,13 +24,23 @@ export const App = () => {
     setPlayerTurn(playerTurn === 1 ? 2 : 1);
   };
 
+  const resetGame = () => {
+    setGrid(Array(42).fill(null));
+    setPlayerTurn(1);
+    setWinner(null);
+  };
+
   return (
     <div className={styles.main}>
-      <h1 className={styles.title}>Puissance 4</h1>
-      <h2 className={styles.playerTurn}>
+      <h1>
         {!winner && `Joueur ${playerTurn} : à ton tour !`}
         {winner && `Bravo Joueur ${winner} !`}
-      </h2>
+      </h1>
+      {winner && (
+        <button className={styles.button} onClick={resetGame}>
+          Restart Game
+        </button>
+      )}
       <Grid handleCaseClick={handleCaseClick} grid={grid} />
     </div>
   );
