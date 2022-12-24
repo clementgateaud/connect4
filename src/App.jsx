@@ -32,8 +32,6 @@ export const App = () => {
 };
 
 // wait to announce winner and change playerturn
-// Big winner announcement
-// confetti
 // line to show the winning combination
 // multi pages (leaderboard, homepage, other games)
 // edit player names
