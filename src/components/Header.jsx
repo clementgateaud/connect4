@@ -21,7 +21,7 @@ export const Header = () => {
   };
 
   return (
-    <>
+    <div>
       <h1 className={styles.title}>
         {!winner && !isDraw && (
           <>
@@ -61,6 +61,6 @@ export const Header = () => {
           Rejouer
         </button>
       )}
-    </>
+    </div>
   );
 };
