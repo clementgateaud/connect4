@@ -1,4 +1,4 @@
-import { WINNING_COMBINATIONS } from "./enums";
+import { WINNING_COMBINATIONS } from "./constants";
 
 export const getCaseToFill = (index, grid) => {
   // set all the column cases in an array

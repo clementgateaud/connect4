@@ -27,7 +27,9 @@ export const Header = () => {
           !isDraw &&
           `${
             playerTurn === 1 ? "🟡" : "🔴"
-          } Joueur ${playerTurn} : à ton tour !`}
+          } Joueur ${playerTurn} : à ton tour ! ${
+            playerTurn === 1 ? "🟡" : "🔴"
+          }`}
         {isDraw && `Égalité !`}
         {winner && `Bravo Joueur ${winner} !`}
       </h1>

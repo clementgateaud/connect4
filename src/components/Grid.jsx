@@ -3,7 +3,7 @@ import { whoIsTheWinner } from "../utils";
 import { useContext } from "react";
 import { Puissance4GameContext } from "../Puissance4GameContext";
 import { Case } from "./Case";
-import supportSvg from "../assets/support.png";
+import { ReactComponent as SupportSVG } from "../assets/support.svg";
 import styles from "./Grid.module.css";
 
 export const Grid = () => {
@@ -17,12 +17,16 @@ export const Grid = () => {
 
   return (
     <div className={styles.main}>
-      {/* eslint-disable-next-line jsx-a11y/alt-text */}
-      <img className={styles.support} src={supportSvg} />
-      <div className={styles.cases}>
-        {grid.map((owner, index) => (
-          <Case key={index} owner={owner} index={index} />
-        ))}
+      <div className={styles.gridBody}>
+        <SupportSVG className={styles.support} fill="#4b65ff" />
+        <div className={styles.cases}>
+          {grid.map((owner, index) => (
+            <Case key={index} owner={owner} index={index} />
+          ))}
+        </div>
+      </div>
+      <div className={styles.bottomBar} style={{ backgroundColor: "#334de0" }}>
+        Puissance 4
       </div>
     </div>
   );

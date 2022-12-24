@@ -35,6 +35,5 @@ export const App = () => {
 // Big winner announcement
 // confetti
 // line to show the winning combination
-// make board more realistic
 // multi pages (leaderboard, homepage, other games)
 // edit player names
