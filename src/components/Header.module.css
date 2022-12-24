@@ -1,3 +1,11 @@
-.button {
-  margin-bottom: 10px;
+.title {
+  margin: 20px 0px 20px 0px;
+}
+
+.coloredCircle {
+  -webkit-text-stroke: 1px black;
+}
+
+.highlight {
+  padding: 0 5px;
 }

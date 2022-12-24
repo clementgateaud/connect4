@@ -12,11 +12,11 @@
 }
 
 .yellow {
-  background-color: yellow;
+  background-color: #fde74c;
 }
 
 .red {
-  background-color: red;
+  background-color: #ee6352;
 }
 
 @keyframes fall {

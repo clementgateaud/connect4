@@ -18,14 +18,14 @@ export const Grid = () => {
   return (
     <div className={styles.main}>
       <div className={styles.gridBody}>
-        <SupportSVG className={styles.support} fill="#4b65ff" />
+        <SupportSVG className={styles.support} fill="#197BBD" />
         <div className={styles.cases}>
           {grid.map((owner, index) => (
             <Case key={index} owner={owner} index={index} />
           ))}
         </div>
       </div>
-      <div className={styles.bottomBar} style={{ backgroundColor: "#334de0" }}>
+      <div className={styles.bottomBar} style={{ backgroundColor: "#1570ac" }}>
         Puissance 4
       </div>
     </div>
