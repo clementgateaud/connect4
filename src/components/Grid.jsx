@@ -6,12 +6,13 @@ import { Case } from "./Case";
 import styles from "./Grid.module.css";
 
 export const Grid = () => {
-  const { grid, setWinner } = useContext(Puissance4GameContext);
+  const { grid, setWinner, setIsDraw } = useContext(Puissance4GameContext);
 
   useEffect(() => {
-    const { winner } = whoIsTheWinner(grid);
+    const { winner, isDraw } = whoIsTheWinner(grid);
     setWinner(winner);
-  }, [grid, setWinner]);
+    setIsDraw(isDraw);
+  }, [grid, setWinner, setIsDraw]);
 
   return (
     <div className={styles.main}>

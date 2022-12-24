@@ -24,5 +24,8 @@ export const whoIsTheWinner = (grid) => {
 
   const winner = winningCombination ? grid[winningCombination[0]] : null;
 
-  return { winningCombination, winner };
+  // it's a draw if all grid elements are truthy
+  const isDraw = grid.every((element) => element);
+
+  return { winningCombination, winner, isDraw };
 };
