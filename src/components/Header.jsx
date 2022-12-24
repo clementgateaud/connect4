@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { Puissance4GameContext } from "../Puissance4GameContext";
-import { Button } from "./Button";
 import styles from "./Header.module.css";
 
 export const Header = () => {
@@ -57,7 +56,11 @@ export const Header = () => {
           </>
         )}
       </h1>
-      {(winner || isDraw) && <Button onClick={resetGame}>Rejouer</Button>}
+      {(winner || isDraw) && (
+        <button className={styles.button} onClick={resetGame}>
+          Rejouer
+        </button>
+      )}
     </>
   );
 };
