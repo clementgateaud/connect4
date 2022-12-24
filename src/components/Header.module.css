@@ -1,5 +1,6 @@
 .title {
   margin: 20px 0px 20px 0px;
+  font-size: 32px;
 }
 
 .coloredCircle {
@@ -8,4 +9,10 @@
 
 .highlight {
   padding: 0 5px;
+}
+
+@media screen and (max-width: 560px) {
+  .title {
+    font-size: 24px;
+  }
 }
