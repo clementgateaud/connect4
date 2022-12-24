@@ -46,12 +46,12 @@ export const Header = () => {
               className={styles.highlight}
               style={{
                 background: `linear-gradient(to bottom, transparent 50%, ${
-                  playerTurn === 1
+                  winner === 1
                     ? "rgba(252, 224, 65, 70%)"
                     : "rgba(238, 99, 82, 70%)"
                 } 60%)`,
               }}
-            >{`Joueur ${playerTurn}`}</span>
+            >{`Joueur ${winner}`}</span>
             <span> !</span>
           </>
         )}
