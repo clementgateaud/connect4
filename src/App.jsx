@@ -1,30 +1,12 @@
-import { useState, useEffect } from "react";
-import { getCaseToFill, whoIsTheWinner } from "./utils";
+import { useState } from "react";
 import styles from "./App.module.css";
 import { Grid } from "./components/Grid";
+import { Puissance4GameContext } from "./Puissance4GameContext";
 
 export const App = () => {
   const [grid, setGrid] = useState(Array(42).fill(null));
   const [playerTurn, setPlayerTurn] = useState(1);
   const [winner, setWinner] = useState(null);
-
-  useEffect(() => {
-    const { winner } = whoIsTheWinner(grid);
-    setWinner(winner);
-  }, [grid]);
-
-  const handleCaseClick = (index) => {
-    if (winner) {
-      return;
-    }
-    const caseToFill = getCaseToFill(index, grid);
-    if (caseToFill) {
-      const newGrid = [...grid];
-      newGrid[caseToFill] = playerTurn;
-      setGrid(newGrid);
-      setPlayerTurn(playerTurn === 1 ? 2 : 1);
-    }
-  };
 
   const resetGame = () => {
     setGrid(Array(42).fill(null));
@@ -33,26 +15,29 @@ export const App = () => {
   };
 
   return (
-    <div className={styles.main}>
-      <h1>
-        {!winner &&
-          `${
-            playerTurn === 1 ? "🟡" : "🔴"
-          } Joueur ${playerTurn} : à ton tour !`}
-        {winner && `Bravo Joueur ${winner} !`}
-      </h1>
-      {winner && (
-        <button className={styles.button} onClick={resetGame}>
-          Rejouer
-        </button>
-      )}
-      <Grid handleCaseClick={handleCaseClick} grid={grid} />
-    </div>
+    <Puissance4GameContext.Provider
+      value={{ grid, setGrid, playerTurn, setPlayerTurn, winner, setWinner }}
+    >
+      <div className={styles.main}>
+        <h1>
+          {!winner &&
+            `${
+              playerTurn === 1 ? "🟡" : "🔴"
+            } Joueur ${playerTurn} : à ton tour !`}
+          {winner && `Bravo Joueur ${winner} !`}
+        </h1>
+        {winner && (
+          <button className={styles.button} onClick={resetGame}>
+            Rejouer
+          </button>
+        )}
+        <Grid />
+      </div>
+    </Puissance4GameContext.Provider>
   );
 };
 
 // draw
-// context
 // make cases fall from the top
 // Big winner announcement
 // confetti
