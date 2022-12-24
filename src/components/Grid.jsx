@@ -47,9 +47,7 @@ export const Grid = () => {
           ))}
         </div>
       </div>
-      <div className={styles.bottomBar} style={{ backgroundColor: "#1570ac" }}>
-        Puissance 4
-      </div>
+      <div className={styles.bottomBar}>Puissance 4</div>
     </div>
   );
 };
