@@ -18,10 +18,12 @@ export const App = () => {
       return;
     }
     const caseToFill = getCaseToFill(index, grid);
-    const newGrid = [...grid];
-    newGrid[caseToFill] = playerTurn;
-    setGrid(newGrid);
-    setPlayerTurn(playerTurn === 1 ? 2 : 1);
+    if (caseToFill) {
+      const newGrid = [...grid];
+      newGrid[caseToFill] = playerTurn;
+      setGrid(newGrid);
+      setPlayerTurn(playerTurn === 1 ? 2 : 1);
+    }
   };
 
   const resetGame = () => {
@@ -33,7 +35,10 @@ export const App = () => {
   return (
     <div className={styles.main}>
       <h1>
-        {!winner && `Joueur ${playerTurn} : à ton tour !`}
+        {!winner &&
+          `${
+            playerTurn === 1 ? "🟡" : "🔴"
+          } Joueur ${playerTurn} : à ton tour !`}
         {winner && `Bravo Joueur ${winner} !`}
       </h1>
       {winner && (
@@ -46,9 +51,11 @@ export const App = () => {
   );
 };
 
+// draw
+// context
 // make cases fall from the top
-// replay button
 // Big winner announcement
 // confetti
 // line to show the winning combination
 // make board more realistic
+// leaderboard

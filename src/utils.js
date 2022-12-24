@@ -5,10 +5,10 @@ export const getCaseToFill = (index, grid) => {
   const columnCases = [];
   const column = index % 7;
   for (let i = 0; i < 6; i++) {
-    columnCases.push(column + 7 * i);
+    columnCases.unshift(column + 7 * i);
   }
   // return first case from the bottom that is null
-  return columnCases.reverse().find((index) => !grid[index]);
+  return columnCases.find((index) => !grid[index]);
 };
 
 export const whoIsTheWinner = (grid) => {
