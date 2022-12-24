@@ -13,7 +13,6 @@ export const Case = ({ owner, index }) => {
       return;
     }
     const caseToFill = getCaseToFill(index, grid);
-    console.log(caseToFill);
     if (typeof caseToFill === "number") {
       const newGrid = [...grid];
       newGrid[caseToFill] = playerTurn;

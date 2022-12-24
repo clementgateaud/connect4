@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./App.module.css";
+import { Header } from "./components/Header";
 import { Grid } from "./components/Grid";
 import { Puissance4GameContext } from "./Puissance4GameContext";
 
@@ -8,13 +9,6 @@ export const App = () => {
   const [playerTurn, setPlayerTurn] = useState(1);
   const [winner, setWinner] = useState(null);
   const [isDraw, setIsDraw] = useState(false);
-
-  const resetGame = () => {
-    setGrid(Array(42).fill(null));
-    setPlayerTurn(1);
-    setWinner(null);
-    setIsDraw(false);
-  };
 
   return (
     <Puissance4GameContext.Provider
@@ -30,27 +24,13 @@ export const App = () => {
       }}
     >
       <div className={styles.main}>
-        <h1>
-          {!winner &&
-            !isDraw &&
-            `${
-              playerTurn === 1 ? "🟡" : "🔴"
-            } Joueur ${playerTurn} : à ton tour !`}
-          {isDraw && `Égalité !`}
-          {winner && `Bravo Joueur ${winner} !`}
-        </h1>
-        {(winner || isDraw) && (
-          <button className={styles.button} onClick={resetGame}>
-            Rejouer
-          </button>
-        )}
+        <Header />
         <Grid />
       </div>
     </Puissance4GameContext.Provider>
   );
 };
 
-// draw
 // make cases fall from the top
 // Big winner announcement
 // confetti
