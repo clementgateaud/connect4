@@ -21,7 +21,7 @@
 
 @keyframes fall {
   0% {
-    bottom: 1250px;
+    bottom: 100vh;
   }
   100% {
     bottom: 0px;
