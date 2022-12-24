@@ -3,14 +3,19 @@
   position: relative;
 }
 
+.yellow,
+.red {
+  animation: fall 1s;
+  margin: 0 5%;
+  aspect-ratio: auto;
+}
+
 .yellow {
   background-color: yellow;
-  animation: fall 1s;
 }
 
 .red {
   background-color: red;
-  animation: fall 1s;
 }
 
 @keyframes fall {
