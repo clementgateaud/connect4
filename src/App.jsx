@@ -31,9 +31,10 @@ export const App = () => {
   );
 };
 
-// make cases fall from the top
+// wait to announce winner and change playerturn
 // Big winner announcement
 // confetti
 // line to show the winning combination
 // make board more realistic
-// leaderboard
+// multi pages (leaderboard, homepage, other games)
+// edit player names

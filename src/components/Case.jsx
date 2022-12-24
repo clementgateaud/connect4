@@ -22,13 +22,12 @@ export const Case = ({ owner, index }) => {
   };
 
   return (
-    <div onClick={handleCaseClick}>
-      <div
-        className={classNamesMaker(styles.circle, {
-          [styles["yellow"]]: owner === 1,
-          [styles["red"]]: owner === 2,
-        })}
-      ></div>
-    </div>
+    <div
+      className={classNamesMaker(styles.main, {
+        [styles["yellow"]]: owner === 1,
+        [styles["red"]]: owner === 2,
+      })}
+      onClick={handleCaseClick}
+    ></div>
   );
 };
