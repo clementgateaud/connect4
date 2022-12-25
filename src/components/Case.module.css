@@ -29,11 +29,15 @@
 }
 
 .winningYellow {
-  border: solid 10px #ee6352;
+  border-width: 10px;
+  border-color: #ee6352;
+  border-style: solid;
 }
 
 .winningRed {
-  border: solid 10px #fde74c;
+  border-width: 10px;
+  border-color: #fde74c;
+  border-style: solid;
 }
 
 @keyframes fall {
@@ -42,5 +46,15 @@
   }
   100% {
     bottom: 0px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .winningYellow {
+    border-width: 5px;
+  }
+
+  .winningRed {
+    border-width: 5px;
   }
 }
