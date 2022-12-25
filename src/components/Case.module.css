@@ -5,7 +5,7 @@
 
 .yellowCase,
 .redCase {
-  animation: fall 1s;
+  animation: fall 0.75s ease-in;
 }
 
 .yellowCase {
@@ -23,15 +23,15 @@
   position: absolute;
   top: 0;
   left: 0;
-  animation: blink 1s infinite;
+  animation: blink 1.5s infinite;
 }
 
 @keyframes fall {
   0% {
-    bottom: 100vh;
+    transform: translateY(-100vh);
   }
   100% {
-    bottom: 0px;
+    transform: translateY(0px);
   }
 }
 
@@ -39,8 +39,11 @@
   0% {
     background-color: rgba(255, 255, 255, 0%);
   }
-  50% {
+  40% {
     background-color: rgb(160, 231, 122);
+  }
+  80% {
+    background-color: rgba(255, 255, 255, 0%);
   }
   100% {
     background-color: rgba(255, 255, 255, 0%);

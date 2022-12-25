@@ -23,7 +23,7 @@ export const Case = ({ owner, index }) => {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-    }, 1000);
+    }, 750);
     const caseToFill = getCaseToFill(index, grid);
     if (typeof caseToFill === "number") {
       const newGrid = [...grid];
@@ -31,7 +31,7 @@ export const Case = ({ owner, index }) => {
       setGrid(newGrid);
       setTimeout(() => {
         setPlayerTurn(playerTurn === 1 ? 2 : 1);
-      }, 1000);
+      }, 750);
     }
   };
 
