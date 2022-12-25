@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Puissance4GameContext } from "../Puissance4GameContext";
 import { getCaseToFill } from "../utils";
 import classNamesMaker from "classnames";
@@ -15,8 +15,6 @@ export const Case = ({ owner, index }) => {
     setIsLoading,
     isLoading,
   } = useContext(Puissance4GameContext);
-
-  const [showWinningCombination, setShowWinningCombination] = useState(false);
 
   const handleCaseClick = () => {
     if (isLoading || winner) {
@@ -37,50 +35,14 @@ export const Case = ({ owner, index }) => {
     }
   };
 
-  // blink
-  useEffect(() => {
-    if (!isLoading) {
-      const timeout = setTimeout(() => {
-        setShowWinningCombination(!showWinningCombination);
-      }, 500);
-      return () => {
-        clearTimeout(timeout);
-      };
-    } else {
-      setShowWinningCombination(false);
-    }
-  }, [isLoading, showWinningCombination, setShowWinningCombination]);
-
   return (
     <div
       className={classNamesMaker(styles.main, {
-        [styles["yellow"]]:
-          (owner === 1 && !winningCombination?.includes(index)) ||
-          (owner === 1 &&
-            winningCombination?.includes(index) &&
-            !showWinningCombination) ||
-          (owner === 2 &&
-            winningCombination?.includes(index) &&
-            showWinningCombination),
-        [styles["red"]]:
-          (owner === 2 && !winningCombination?.includes(index)) ||
-          (owner === 2 &&
-            winningCombination?.includes(index) &&
-            !showWinningCombination) ||
-          (owner === 1 &&
-            winningCombination?.includes(index) &&
-            showWinningCombination),
+        [styles["yellowCase"]]: owner === 1,
+        [styles["redCase"]]: owner === 2,
+        [styles["winning"]]: winningCombination?.includes(index) && !isLoading,
       })}
       onClick={handleCaseClick}
-    >
-      {showWinningCombination && winningCombination?.includes(index) && (
-        <div
-          className={classNamesMaker(styles.winningCase, {
-            [styles["winningYellow"]]: owner === 1,
-            [styles["winningRed"]]: owner === 2,
-          })}
-        ></div>
-      )}
-    </div>
+    ></div>
   );
 };

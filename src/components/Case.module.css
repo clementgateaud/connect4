@@ -1,39 +1,29 @@
 .main {
   aspect-ratio: 1;
   position: relative;
-  display: flex;
-  align-items: center;
 }
 
-.yellow,
-.red {
+.yellowCase,
+.redCase {
   animation: fall 1s;
-  margin: 0 5%;
-  width: 90%;
-  aspect-ratio: 9/10;
 }
 
-.yellow {
+.yellowCase {
   background-color: #fde74c;
 }
 
-.red {
+.redCase {
   background-color: #ee6352;
 }
 
-.winningCase {
+.winning:after {
+  content: "";
   width: 100%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  margin: 10%;
-}
-
-.winningYellow {
-  background-color: #fde74c;
-}
-
-.winningRed {
-  background-color: #ee6352;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: blink 1s infinite;
 }
 
 @keyframes fall {
@@ -42,5 +32,17 @@
   }
   100% {
     bottom: 0px;
+  }
+}
+
+@keyframes blink {
+  0% {
+    background-color: rgba(255, 255, 255, 0%);
+  }
+  50% {
+    background-color: rgb(160, 231, 122);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0%);
   }
 }
