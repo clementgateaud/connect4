@@ -37,32 +37,19 @@ export const Case = ({ owner, index }) => {
     }
   };
 
-  // wait before start blinking
-  useEffect(() => {
-    if (winningCombination) {
-      const timeout = setTimeout(() => {
-        setShowWinningCombination(true);
-      }, 1000);
-      return () => {
-        clearTimeout(timeout);
-      };
-    } else {
-      setShowWinningCombination(false);
-    }
-  }, [winningCombination, setShowWinningCombination]);
-
   // blink
   useEffect(() => {
-    if (winningCombination) {
+    if (!isLoading) {
       const timeout = setTimeout(() => {
         setShowWinningCombination(!showWinningCombination);
       }, 500);
       return () => {
         clearTimeout(timeout);
       };
+    } else {
+      setShowWinningCombination(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showWinningCombination, setShowWinningCombination]);
+  }, [isLoading, showWinningCombination, setShowWinningCombination]);
 
   return (
     <div
