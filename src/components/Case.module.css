@@ -22,22 +22,18 @@
 }
 
 .winningCase {
-  transition-delay: 1000ms;
   width: 100%;
   aspect-ratio: 1;
   border-radius: 50%;
+  margin: 10%;
 }
 
 .winningYellow {
-  border-width: 10px;
-  border-color: #ee6352;
-  border-style: solid;
+  background-color: #fde74c;
 }
 
 .winningRed {
-  border-width: 10px;
-  border-color: #fde74c;
-  border-style: solid;
+  background-color: #ee6352;
 }
 
 @keyframes fall {
@@ -46,15 +42,5 @@
   }
   100% {
     bottom: 0px;
-  }
-}
-
-@media screen and (max-width: 560px) {
-  .winningYellow {
-    border-width: 5px;
-  }
-
-  .winningRed {
-    border-width: 5px;
   }
 }

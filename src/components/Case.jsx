@@ -49,7 +49,7 @@ export const Case = ({ owner, index }) => {
     } else {
       setShowWinningCombination(false);
     }
-  }, [winningCombination]);
+  }, [winningCombination, setShowWinningCombination]);
 
   // blink
   useEffect(() => {
@@ -67,8 +67,22 @@ export const Case = ({ owner, index }) => {
   return (
     <div
       className={classNamesMaker(styles.main, {
-        [styles["yellow"]]: owner === 1,
-        [styles["red"]]: owner === 2,
+        [styles["yellow"]]:
+          (owner === 1 && !winningCombination?.includes(index)) ||
+          (owner === 1 &&
+            winningCombination?.includes(index) &&
+            !showWinningCombination) ||
+          (owner === 2 &&
+            winningCombination?.includes(index) &&
+            showWinningCombination),
+        [styles["red"]]:
+          (owner === 2 && !winningCombination?.includes(index)) ||
+          (owner === 2 &&
+            winningCombination?.includes(index) &&
+            !showWinningCombination) ||
+          (owner === 1 &&
+            winningCombination?.includes(index) &&
+            showWinningCombination),
       })}
       onClick={handleCaseClick}
     >
