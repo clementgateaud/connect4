@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Puissance4GameContext } from "../Puissance4GameContext";
-import { getCaseToFill, sleep } from "../utils";
+import { getCaseToFill } from "../utils";
 import classNamesMaker from "classnames";
 import styles from "./Case.module.css";
 
