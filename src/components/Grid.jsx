@@ -7,15 +7,20 @@ import { ReactComponent as SupportSVG } from "../assets/support.svg";
 import styles from "./Grid.module.css";
 
 export const Grid = () => {
-  const { grid, winner, setWinner, setIsDraw } = useContext(
-    Puissance4GameContext
-  );
+  const { grid, winner, setWinner, setWinningCombination, setIsDraw } =
+    useContext(Puissance4GameContext);
 
   useEffect(() => {
-    const { winner, isDraw } = whoIsTheWinner(grid);
-    setWinner(winner);
-    setIsDraw(isDraw);
-  }, [grid, setWinner, setIsDraw]);
+    const { winner, winningCombination, isDraw } = whoIsTheWinner(grid);
+    setWinningCombination(winningCombination);
+    const timeout = setTimeout(() => {
+      setWinner(winner);
+      setIsDraw(isDraw);
+    }, 1000);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [grid, setWinner, setWinningCombination, setIsDraw]);
 
   const CONFETTI_CONFIG = {
     angle: 360,

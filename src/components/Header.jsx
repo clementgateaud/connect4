@@ -11,6 +11,7 @@ export const Header = () => {
     setWinner,
     isDraw,
     setIsDraw,
+    setWinningCombination,
   } = useContext(Puissance4GameContext);
 
   const resetGame = () => {
@@ -18,6 +19,7 @@ export const Header = () => {
     setPlayerTurn(1);
     setWinner(null);
     setIsDraw(false);
+    setWinningCombination(null);
   };
 
   return (

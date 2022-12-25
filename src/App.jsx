@@ -8,7 +8,9 @@ export const App = () => {
   const [grid, setGrid] = useState(Array(42).fill(null));
   const [playerTurn, setPlayerTurn] = useState(1);
   const [winner, setWinner] = useState(null);
+  const [winningCombination, setWinningCombination] = useState(null);
   const [isDraw, setIsDraw] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <Puissance4GameContext.Provider
@@ -19,8 +21,12 @@ export const App = () => {
         setPlayerTurn,
         winner,
         setWinner,
+        winningCombination,
+        setWinningCombination,
         isDraw,
         setIsDraw,
+        isLoading,
+        setIsLoading,
       }}
     >
       <div className={styles.main}>
@@ -30,8 +36,3 @@ export const App = () => {
     </Puissance4GameContext.Provider>
   );
 };
-
-// wait to announce winner and change playerturn
-// line to show the winning combination
-// multi pages (leaderboard, homepage, other games)
-// edit player names

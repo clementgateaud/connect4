@@ -1,6 +1,8 @@
 .main {
   aspect-ratio: 1;
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .yellow,
@@ -17,6 +19,21 @@
 
 .red {
   background-color: #ee6352;
+}
+
+.winningCase {
+  transition-delay: 1000ms;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.winningYellow {
+  border: solid 10px #ee6352;
+}
+
+.winningRed {
+  border: solid 10px #fde74c;
 }
 
 @keyframes fall {
