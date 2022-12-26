@@ -3,10 +3,6 @@
   font-size: 32px;
 }
 
-.coloredCircle {
-  -webkit-text-stroke: 1px black;
-}
-
 .highlight {
   padding: 0 5px;
 }
@@ -16,8 +12,8 @@
   text-align: center;
   border-radius: 5px;
   padding: 10px 25px;
-  background-color: rgb(25, 124, 190);
-  border: solid 1px rgb(25, 124, 190);
+  background-color: var(--color-support);
+  border: solid 1px var(--color-support);
   color: white;
   font-size: 16px;
   letter-spacing: 1.2px;
@@ -26,7 +22,7 @@
 
 .button:hover {
   background-color: white;
-  color: rgb(25, 124, 190);
+  color: var(--color-support);
 }
 
 @media screen and (max-width: 560px) {

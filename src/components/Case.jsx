@@ -38,8 +38,8 @@ export const Case = ({ owner, index }) => {
   return (
     <div
       className={classNamesMaker(styles.main, {
-        [styles["yellowCase"]]: owner === 1,
-        [styles["redCase"]]: owner === 2,
+        [styles["player1Case"]]: owner === 1,
+        [styles["player2Case"]]: owner === 2,
         [styles["winning"]]: winningCombination?.includes(index) && !isLoading,
       })}
       onClick={handleCaseClick}

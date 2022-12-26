@@ -5,3 +5,10 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+html {
+  --color-support: rgb(25, 124, 190);
+  --color-player1: #fde74c;
+  --color-player2: #ee6352;
+  --color-blink: rgb(160, 231, 122);
+}

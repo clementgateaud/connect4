@@ -3,17 +3,17 @@
   position: relative;
 }
 
-.yellowCase,
-.redCase {
+.player1Case,
+.player2Case {
   animation: fall 0.75s ease-in;
 }
 
-.yellowCase {
-  background-color: #fde74c;
+.player1Case {
+  background-color: var(--color-player1);
 }
 
-.redCase {
-  background-color: #ee6352;
+.player2Case {
+  background-color: var(--color-player2);
 }
 
 .winning:after {
@@ -40,7 +40,7 @@
     background-color: rgba(255, 255, 255, 0%);
   }
   40% {
-    background-color: rgb(160, 231, 122);
+    background-color: var(--color-blink);
   }
   80% {
     background-color: rgba(255, 255, 255, 0%);

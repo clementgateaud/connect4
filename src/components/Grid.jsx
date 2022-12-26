@@ -33,10 +33,7 @@ export const Grid = () => {
     width: "13px",
     height: "13px",
     perspective: "700px",
-    colors:
-      winner === 1
-        ? ["#b6c6109b", "#e8d607", "#a1a10d"]
-        : ["#ff2f2f", "#a21414", "#e85050"],
+    colors: winner === 1 ? ["var(--color-player1)"] : ["var(--color-player2)"],
   };
 
   return (
@@ -45,7 +42,7 @@ export const Grid = () => {
         <div className={styles.confettiContainer}>
           <Confetti active={winner} config={CONFETTI_CONFIG} />
         </div>
-        <SupportSVG className={styles.support} fill="#197BBD" />
+        <SupportSVG className={styles.support} fill="var(--color-support)" />
         <div className={styles.cases}>
           {grid.map((owner, index) => (
             <Case key={index} owner={owner} index={index} />
