@@ -12,7 +12,7 @@ export const App = () => {
   const [winningCombination, setWinningCombination] = useState(null);
   const [isDraw, setIsDraw] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [versusComputer, setVersusComputer] = useState(true);
+  const [player2Mode, setPlayer2Mode] = useState(0);
 
   useEffect(() => {
     document.title = "Puissance 4";
@@ -33,8 +33,8 @@ export const App = () => {
         setIsDraw,
         isLoading,
         setIsLoading,
-        versusComputer,
-        setVersusComputer,
+        player2Mode,
+        setPlayer2Mode,
       }}
     >
       <div className={styles.main}>

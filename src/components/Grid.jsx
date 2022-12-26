@@ -19,7 +19,7 @@ export const Grid = () => {
     setPlayerTurn,
     isLoading,
     setIsLoading,
-    versusComputer,
+    player2Mode,
   } = useContext(Puissance4GameContext);
 
   // detect if winner
@@ -37,15 +37,10 @@ export const Grid = () => {
 
   // computer playing
   useEffect(() => {
-    if (
-      !versusComputer ||
-      isLoading ||
-      winningCombination ||
-      playerTurn === 1
-    ) {
+    if (!player2Mode || isLoading || winningCombination || playerTurn === 1) {
       return;
     }
-    const indexToClick = getComputerCaseToPlay(grid);
+    const indexToClick = getComputerCaseToPlay(grid, player2Mode);
     const caseToFill = getCaseToFill(indexToClick, grid);
     const newGrid = [...grid];
     newGrid[caseToFill] = playerTurn;
@@ -63,7 +58,7 @@ export const Grid = () => {
     setIsLoading,
     setPlayerTurn,
     winningCombination,
-    versusComputer,
+    player2Mode,
   ]);
 
   const CONFETTI_CONFIG = {

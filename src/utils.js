@@ -11,37 +11,34 @@ export const getCaseToFill = (index, grid) => {
   return columnCases.find((index) => !grid[index]);
 };
 
-export const getComputerCaseToPlay = (grid) => {
+export const getComputerCaseToPlay = (grid, player2Mode) => {
   let caseToPlay = null;
-  // check if computer can win next
-  for (let i = 0; i < grid.length - 1; i++) {
-    const duplicatedGrid = [...grid];
-    const caseToFillComputer = getCaseToFill(i, duplicatedGrid);
-    duplicatedGrid[caseToFillComputer] = 2;
-    if (whoIsTheWinner(duplicatedGrid).winner === 2) {
-      caseToPlay = i;
-      break;
-    }
-  }
-  if (caseToPlay) {
-    return caseToPlay;
-  }
+  if (player2Mode > 1) {
+    // check if computer can win next
+    caseToPlay = canComputerFinishNext(grid);
+    if (caseToPlay !== null) return caseToPlay;
 
-  // check if human can finish next
-  for (let i = 0; i < grid.length - 1; i++) {
-    const duplicatedGrid = [...grid];
-    const caseToFillHuman = getCaseToFill(i, duplicatedGrid);
-    duplicatedGrid[caseToFillHuman] = 1;
-    if (whoIsTheWinner(duplicatedGrid).winner === 1) {
-      caseToPlay = i;
-      break;
-    }
+    // check if human can finish next
+    caseToPlay = canHumanFinishNext(grid);
+    if (caseToPlay !== null) return caseToPlay;
   }
-  if (caseToPlay) {
+  if (player2Mode > 2) {
+    // no assist (loop to go through compulsory assist)
+    for (let i = 0; i < 100; i++) {
+      const index = Math.floor(Math.random() * (grid.length - 1));
+      const duplicatedGrid2 = [...grid];
+      const caseToFillComputer = getCaseToFill(index, duplicatedGrid2);
+      duplicatedGrid2[caseToFillComputer] = 2;
+      const isSafe = !canHumanFinishNext(duplicatedGrid2);
+      if (isSafe) {
+        caseToPlay = index;
+        break;
+      }
+    }
     return caseToPlay;
   }
   // pick random case
-  while (!caseToPlay) {
+  while (caseToPlay !== null) {
     caseToPlay = Math.floor(Math.random() * (grid.length - 1));
   }
   return caseToPlay;
@@ -64,4 +61,28 @@ export const whoIsTheWinner = (grid) => {
   const isDraw = grid.every((element) => element);
 
   return { winningCombination, winner, isDraw };
+};
+
+const canHumanFinishNext = (grid) => {
+  for (let i = 0; i < grid.length - 1; i++) {
+    const duplicatedGrid = [...grid];
+    const caseToFillHuman = getCaseToFill(i, duplicatedGrid);
+    duplicatedGrid[caseToFillHuman] = 1;
+    if (whoIsTheWinner(duplicatedGrid).winner === 1) {
+      return i;
+    }
+  }
+  return null;
+};
+
+const canComputerFinishNext = (grid) => {
+  for (let i = 0; i < grid.length - 1; i++) {
+    const duplicatedGrid = [...grid];
+    const caseToFillComputer = getCaseToFill(i, duplicatedGrid);
+    duplicatedGrid[caseToFillComputer] = 2;
+    if (whoIsTheWinner(duplicatedGrid).winner === 2) {
+      return i;
+    }
+  }
+  return null;
 };

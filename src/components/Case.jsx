@@ -13,15 +13,11 @@ export const Case = ({ owner, index }) => {
     winningCombination,
     setIsLoading,
     isLoading,
-    versusComputer,
+    player2Mode,
   } = useContext(Puissance4GameContext);
 
   const handleCaseClick = () => {
-    if (
-      (versusComputer && playerTurn === 2) ||
-      isLoading ||
-      winningCombination
-    ) {
+    if ((player2Mode && playerTurn === 2) || isLoading || winningCombination) {
       return;
     }
     const caseToFill = getCaseToFill(index, grid);
