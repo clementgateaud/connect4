@@ -45,12 +45,12 @@ export const Grid = () => {
         <Confetti active={winner} config={CONFETTI_CONFIG} />
       </div>
       <div className={styles.gridBody}>
-        <SupportSVG className={styles.support} fill="#197BBD" />
         <div className={styles.cases}>
           {grid.map((owner, index) => (
             <Case key={index} owner={owner} index={index} />
           ))}
         </div>
+        <SupportSVG className={styles.support} fill="#197BBD" />
       </div>
       <div className={styles.bottomBar}></div>
     </div>
