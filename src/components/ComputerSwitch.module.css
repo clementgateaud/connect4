@@ -9,6 +9,7 @@
 
 @media screen and (max-width: 560px) {
   .main {
+    margin-top: 10px;
     font-size: 12px;
   }
 }
