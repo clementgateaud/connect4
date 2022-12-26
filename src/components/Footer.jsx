@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { Puissance4GameContext } from "../Puissance4GameContext";
-import styles from "./ComputerSwitch.module.css";
+import styles from "./Footer.module.css";
 
-export const ComputerSwitch = () => {
+export const Footer = () => {
   const { versusComputer, setVersusComputer } = useContext(
     Puissance4GameContext
   );
   return (
-    <div className={styles.main}>
+    <label className={styles.main}>
       <span>Joueur 2 automatique</span>
       <input
         type="checkbox"
@@ -16,6 +16,6 @@ export const ComputerSwitch = () => {
           setVersusComputer((prev) => !prev);
         }}
       />
-    </div>
+    </label>
   );
 };

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "./App.module.css";
 import { Header } from "./components/Header";
 import { Grid } from "./components/Grid";
-import { ComputerSwitch } from "./components/ComputerSwitch";
+import { Footer } from "./components/Footer";
 import { Puissance4GameContext } from "./Puissance4GameContext";
 
 export const App = () => {
@@ -40,7 +40,7 @@ export const App = () => {
       <div className={styles.main}>
         <Header />
         <Grid />
-        <ComputerSwitch />
+        <Footer />
       </div>
     </Puissance4GameContext.Provider>
   );
