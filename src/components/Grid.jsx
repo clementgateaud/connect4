@@ -1,15 +1,28 @@
 import { useEffect, useContext } from "react";
 import Confetti from "react-dom-confetti";
-import { whoIsTheWinner } from "../utils";
+import { whoIsTheWinner, getCaseToFill, getComputerCaseToPlay } from "../utils";
 import { Puissance4GameContext } from "../Puissance4GameContext";
 import { Case } from "./Case";
 import { ReactComponent as SupportSVG } from "../assets/support.svg";
 import styles from "./Grid.module.css";
 
 export const Grid = () => {
-  const { grid, winner, setWinner, setWinningCombination, setIsDraw } =
-    useContext(Puissance4GameContext);
+  const {
+    grid,
+    setGrid,
+    winner,
+    setWinner,
+    winningCombination,
+    setWinningCombination,
+    setIsDraw,
+    playerTurn,
+    setPlayerTurn,
+    isLoading,
+    setIsLoading,
+    versusComputer,
+  } = useContext(Puissance4GameContext);
 
+  // detect if winner
   useEffect(() => {
     const { winner, winningCombination, isDraw } = whoIsTheWinner(grid);
     setWinningCombination(winningCombination);
@@ -21,6 +34,37 @@ export const Grid = () => {
       clearTimeout(timeout);
     };
   }, [grid, setWinner, setWinningCombination, setIsDraw]);
+
+  // computer playing
+  useEffect(() => {
+    if (
+      !versusComputer ||
+      isLoading ||
+      winningCombination ||
+      playerTurn === 1
+    ) {
+      return;
+    }
+    const indexToClick = getComputerCaseToPlay(grid);
+    const caseToFill = getCaseToFill(indexToClick, grid);
+    const newGrid = [...grid];
+    newGrid[caseToFill] = playerTurn;
+    setGrid(newGrid);
+    setIsLoading(true);
+    setTimeout(() => {
+      setPlayerTurn(1);
+      setIsLoading(false);
+    }, 750);
+  }, [
+    playerTurn,
+    grid,
+    setGrid,
+    isLoading,
+    setIsLoading,
+    setPlayerTurn,
+    winningCombination,
+    versusComputer,
+  ]);
 
   const CONFETTI_CONFIG = {
     angle: 360,

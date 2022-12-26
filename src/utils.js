@@ -11,6 +11,42 @@ export const getCaseToFill = (index, grid) => {
   return columnCases.find((index) => !grid[index]);
 };
 
+export const getComputerCaseToPlay = (grid) => {
+  let caseToPlay = null;
+  // check if computer can win next
+  for (let i = 0; i < grid.length - 1; i++) {
+    const duplicatedGrid = [...grid];
+    const caseToFillComputer = getCaseToFill(i, duplicatedGrid);
+    duplicatedGrid[caseToFillComputer] = 2;
+    if (whoIsTheWinner(duplicatedGrid).winner === 2) {
+      caseToPlay = i;
+      break;
+    }
+  }
+  if (caseToPlay) {
+    return caseToPlay;
+  }
+
+  // check if human can finish next
+  for (let i = 0; i < grid.length - 1; i++) {
+    const duplicatedGrid = [...grid];
+    const caseToFillHuman = getCaseToFill(i, duplicatedGrid);
+    duplicatedGrid[caseToFillHuman] = 1;
+    if (whoIsTheWinner(duplicatedGrid).winner === 1) {
+      caseToPlay = i;
+      break;
+    }
+  }
+  if (caseToPlay) {
+    return caseToPlay;
+  }
+  // pick random case
+  while (!caseToPlay) {
+    caseToPlay = Math.floor(Math.random() * (grid.length - 1));
+  }
+  return caseToPlay;
+};
+
 export const whoIsTheWinner = (grid) => {
   const winningCombination = WINNING_COMBINATIONS.find((combination) => {
     const realValuesArray = [];

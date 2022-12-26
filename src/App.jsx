@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "./App.module.css";
 import { Header } from "./components/Header";
 import { Grid } from "./components/Grid";
+import { ComputerSwitch } from "./components/ComputerSwitch";
 import { Puissance4GameContext } from "./Puissance4GameContext";
 
 export const App = () => {
@@ -11,6 +12,7 @@ export const App = () => {
   const [winningCombination, setWinningCombination] = useState(null);
   const [isDraw, setIsDraw] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [versusComputer, setVersusComputer] = useState(true);
 
   useEffect(() => {
     document.title = "Puissance 4";
@@ -31,11 +33,14 @@ export const App = () => {
         setIsDraw,
         isLoading,
         setIsLoading,
+        versusComputer,
+        setVersusComputer,
       }}
     >
       <div className={styles.main}>
         <Header />
         <Grid />
+        <ComputerSwitch />
       </div>
     </Puissance4GameContext.Provider>
   );

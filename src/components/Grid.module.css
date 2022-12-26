@@ -34,9 +34,3 @@
 .confettiContainer > * {
   z-index: 100;
 }
-
-@media screen and (max-width: 560px) {
-  .bottomBar {
-    font-size: 8px;
-  }
-}

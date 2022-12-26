@@ -11,26 +11,29 @@ export const Case = ({ owner, index }) => {
     playerTurn,
     setPlayerTurn,
     winningCombination,
-    winner,
     setIsLoading,
     isLoading,
+    versusComputer,
   } = useContext(Puissance4GameContext);
 
   const handleCaseClick = () => {
-    if (isLoading || winner) {
+    if (
+      (versusComputer && playerTurn === 2) ||
+      isLoading ||
+      winningCombination
+    ) {
       return;
     }
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 750);
     const caseToFill = getCaseToFill(index, grid);
+    // if column is not already full
     if (typeof caseToFill === "number") {
+      setIsLoading(true);
       const newGrid = [...grid];
       newGrid[caseToFill] = playerTurn;
       setGrid(newGrid);
       setTimeout(() => {
         setPlayerTurn(playerTurn === 1 ? 2 : 1);
+        setIsLoading(false);
       }, 750);
     }
   };
