@@ -53,7 +53,7 @@ export const whoIsTheWinner = (grid) => {
   const winner = winningCombination ? grid[winningCombination[0]] : null;
 
   // it's a draw if all grid elements are truthy
-  const isDraw = grid.every((element) => element);
+  const isDraw = !winningCombination && grid.every((element) => element);
 
   return { winningCombination, winner, isDraw };
 };
