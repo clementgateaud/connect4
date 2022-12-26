@@ -41,4 +41,15 @@
 <path fill-rule="evenodd" clip-rule="evenodd" d="M6000 5000H5000V6000H6000V5000ZM5500 5922C5733.06 5922 5922 5733.06 5922 5500C5922 5266.94 5733.06 5078 5500 5078C5266.94 5078 5078 5266.94 5078 5500C5078 5733.06 5266.94 5922 5500 5922Z" fill="current"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M7000 5000H6000V6000H7000V5000ZM6500 5922C6733.06 5922 6922 5733.06 6922 5500C6922 5266.94 6733.06 5078 6500 5078C6266.94 5078 6078 5266.94 6078 5500C6078 5733.06 6266.94 5922 6500 5922Z" fill="current"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M4000 5000H3000V6000H4000V5000ZM3500 5922C3733.06 5922 3922 5733.06 3922 5500C3922 5266.94 3733.06 5078 3500 5078C3266.94 5078 3078 5266.94 3078 5500C3078 5733.06 3266.94 5922 3500 5922Z" fill="current"/>
+<rect x="939" width="118" height="6000" fill="current"/>
+<rect x="1941" width="118" height="6000" fill="current"/>
+<rect x="2941" width="118" height="6000" fill="current"/>
+<rect x="3941" width="118" height="6000" fill="current"/>
+<rect x="4941" width="118" height="6000" fill="current"/>
+<rect x="5941" width="118" height="6000" fill="current"/>
+<rect y="1059" width="118" height="7000" transform="rotate(-90 0 1059)" fill="current"/>
+<rect y="2059" width="118" height="7000" transform="rotate(-90 0 2059)" fill="current"/>
+<rect y="3059" width="118" height="7000" transform="rotate(-90 0 3059)" fill="current"/>
+<rect y="4059" width="118" height="7000" transform="rotate(-90 0 4059)" fill="current"/>
+<rect y="5059" width="118" height="7000" transform="rotate(-90 0 5059)" fill="current"/>
 </svg>
