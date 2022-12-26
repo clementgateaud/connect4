@@ -41,16 +41,16 @@ export const Grid = () => {
 
   return (
     <div className={styles.main}>
-      <div className={styles.confettiContainer}>
-        <Confetti active={winner} config={CONFETTI_CONFIG} />
-      </div>
       <div className={styles.gridBody}>
+        <div className={styles.confettiContainer}>
+          <Confetti active={winner} config={CONFETTI_CONFIG} />
+        </div>
+        <SupportSVG className={styles.support} fill="#197BBD" />
         <div className={styles.cases}>
           {grid.map((owner, index) => (
             <Case key={index} owner={owner} index={index} />
           ))}
         </div>
-        <SupportSVG className={styles.support} fill="#197BBD" />
       </div>
       <div className={styles.bottomBar}></div>
     </div>
