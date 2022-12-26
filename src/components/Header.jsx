@@ -12,6 +12,7 @@ export const Header = () => {
     isDraw,
     setIsDraw,
     setWinningCombination,
+    setisLoading,
   } = useContext(Puissance4GameContext);
 
   const resetGame = () => {
@@ -20,6 +21,7 @@ export const Header = () => {
     setWinner(null);
     setIsDraw(false);
     setWinningCombination(null);
+    setisLoading(false);
   };
 
   return (
