@@ -10,4 +10,7 @@
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  background-color: white;
 }

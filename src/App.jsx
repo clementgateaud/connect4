@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./App.module.css";
 import { Header } from "./components/Header";
 import { Grid } from "./components/Grid";
@@ -11,6 +11,10 @@ export const App = () => {
   const [winningCombination, setWinningCombination] = useState(null);
   const [isDraw, setIsDraw] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    document.title = "Puissance 4";
+  }, []);
 
   return (
     <Puissance4GameContext.Provider
