@@ -15,10 +15,10 @@ export const Footer = () => {
         }}
         value={player2Mode}
       >
-        <option value="0">Human</option>
-        <option value="1">Computer - Totally stupid</option>
-        <option value="2">Computer - 8-year-old kid</option>
-        <option value="3">Computer - Einstein</option>
+        <option value="0">👤 Human</option>
+        <option value="1">🤖 Level 1</option>
+        <option value="2">🤖 Level 2</option>
+        <option value="3">🤖 Level 3</option>
       </select>
     </div>
   );
