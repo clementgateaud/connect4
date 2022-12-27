@@ -12,23 +12,17 @@ export const getCaseToFill = (index, grid) => {
 };
 
 export const getComputerCaseToPlay = (grid, player2Mode) => {
-  let caseToPlay = null;
   if (player2Mode > 1) {
-    // check if computer can win next
-    caseToPlay = canComputerFinishNext(grid);
-    if (caseToPlay !== null) return caseToPlay;
-
-    // check if human can finish next
-    caseToPlay = canHumanFinishNext(grid);
-    if (caseToPlay !== null) return caseToPlay;
+    if (getComputerCaseToFinishNext(grid) !== null)
+      return getComputerCaseToFinishNext(grid);
+    if (getHumanCaseToFinishNext(grid) !== null)
+      return getHumanCaseToFinishNext(grid);
   }
   if (player2Mode > 2) {
-    // no assist (loop to go through compulsory assist)
-    caseToPlay = getCaseToPlayComputerNoAssist(grid);
-    if (caseToPlay !== null) return caseToPlay;
+    if (getComputerRandomCaseToPlayAvoidAssist(grid) !== null)
+      return getComputerRandomCaseToPlayAvoidAssist(grid);
   }
-  // pick random case
-  return Math.floor(Math.random() * grid.length);
+  return getRandomCaseToPlay(grid);
 };
 
 export const whoIsTheWinner = (grid) => {
@@ -50,10 +44,13 @@ export const whoIsTheWinner = (grid) => {
   return { winningCombination, winner, isDraw };
 };
 
-const canHumanFinishNext = (grid) => {
+const getHumanCaseToFinishNext = (grid) => {
   for (let i = 0; i < 7; i++) {
     const duplicatedGrid = [...grid];
     const caseToFillHuman = getCaseToFill(i, duplicatedGrid);
+    if (typeof caseToFillHuman !== "number") {
+      continue;
+    }
     duplicatedGrid[caseToFillHuman] = 1;
     if (whoIsTheWinner(duplicatedGrid).winner === 1) {
       return i;
@@ -62,10 +59,13 @@ const canHumanFinishNext = (grid) => {
   return null;
 };
 
-const canComputerFinishNext = (grid) => {
+const getComputerCaseToFinishNext = (grid) => {
   for (let i = 0; i < 7; i++) {
     const duplicatedGrid = [...grid];
     const caseToFillComputer = getCaseToFill(i, duplicatedGrid);
+    if (typeof caseToFillComputer !== "number") {
+      continue;
+    }
     duplicatedGrid[caseToFillComputer] = 2;
     if (whoIsTheWinner(duplicatedGrid).winner === 2) {
       return i;
@@ -74,16 +74,32 @@ const canComputerFinishNext = (grid) => {
   return null;
 };
 
-const getCaseToPlayComputerNoAssist = (grid) => {
+const getComputerRandomCaseToPlayAvoidAssist = (grid) => {
   for (let i = 0; i < 100; i++) {
     const duplicatedGrid = [...grid];
-    const index = Math.floor(Math.random() * 8);
+    const index = Math.floor(Math.random() * 7);
     const caseToFillComputer = getCaseToFill(index, duplicatedGrid);
+    if (typeof caseToFillComputer !== "number") {
+      continue;
+    }
     duplicatedGrid[caseToFillComputer] = 2;
-    const isSafe = !canHumanFinishNext(duplicatedGrid);
+    const isSafe = getHumanCaseToFinishNext(duplicatedGrid) === null;
     if (isSafe) {
       return index;
     }
   }
   return null;
+};
+
+const getRandomCaseToPlay = (grid) => {
+  while (true) {
+    const duplicatedGrid = [...grid];
+    const index = Math.floor(Math.random() * 7);
+    const caseToFillComputer = getCaseToFill(index, duplicatedGrid);
+    if (typeof caseToFillComputer !== "number") {
+      continue;
+    } else {
+      return index;
+    }
+  }
 };
