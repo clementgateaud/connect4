@@ -24,16 +24,8 @@ export const getComputerCaseToPlay = (grid, player2Mode) => {
   }
   if (player2Mode > 2) {
     // no assist (loop to go through compulsory assist)
-    for (let i = 0; i < 100; i++) {
-      const duplicatedGrid2 = [...grid];
-      const index = Math.floor(Math.random() * 8);
-      const caseToFillComputer = getCaseToFill(index, duplicatedGrid2);
-      duplicatedGrid2[caseToFillComputer] = 2;
-      const isSafe = !canHumanFinishNext(duplicatedGrid2);
-      if (isSafe) {
-        return index;
-      }
-    }
+    caseToPlay = getCaseToPlayComputerNoAssist(grid);
+    if (caseToPlay !== null) return caseToPlay;
   }
   // pick random case
   return Math.floor(Math.random() * grid.length);
@@ -77,6 +69,20 @@ const canComputerFinishNext = (grid) => {
     duplicatedGrid[caseToFillComputer] = 2;
     if (whoIsTheWinner(duplicatedGrid).winner === 2) {
       return i;
+    }
+  }
+  return null;
+};
+
+const getCaseToPlayComputerNoAssist = (grid) => {
+  for (let i = 0; i < 100; i++) {
+    const duplicatedGrid = [...grid];
+    const index = Math.floor(Math.random() * 8);
+    const caseToFillComputer = getCaseToFill(index, duplicatedGrid);
+    duplicatedGrid[caseToFillComputer] = 2;
+    const isSafe = !canHumanFinishNext(duplicatedGrid);
+    if (isSafe) {
+      return index;
     }
   }
   return null;
