@@ -6,7 +6,7 @@ export const Footer = () => {
   const { player2Mode, setPlayer2Mode } = useContext(Connect4GameContext);
   return (
     <div className={styles.main}>
-      <label htmlFor="player2mode">Player 2: </label>
+      <label htmlFor="player2mode">Player 2 : </label>
       <select
         name="player2mode"
         id="player2mode"

@@ -25,6 +25,7 @@ export const Header = () => {
   return (
     <div>
       <h1 className={styles.title}>
+        {isDraw && `It's a draw !`}
         {!winner && !isDraw && (
           <>
             <span
@@ -36,11 +37,10 @@ export const Header = () => {
                     : "rgba(238, 99, 82, 70%)"
                 } 60%)`,
               }}
-            >{`Joueur ${playerTurn}`}</span>
-            <span>: your turn !</span>
+            >{`Player ${playerTurn}`}</span>
+            <span> : your turn !</span>
           </>
         )}
-        {isDraw && `It's a draw !`}
         {winner && (
           <>
             <span>Congrats </span>
