@@ -1,7 +1,7 @@
 import { useEffect, useContext } from "react";
 import Confetti from "react-dom-confetti";
 import { whoIsTheWinner, getCaseToFill, getComputerCaseToPlay } from "../utils";
-import { Puissance4GameContext } from "../Puissance4GameContext";
+import { Connect4GameContext } from "../Connect4GameContext";
 import { Case } from "./Case";
 import { ReactComponent as SupportSVG } from "../assets/support.svg";
 import styles from "./Grid.module.css";
@@ -20,7 +20,7 @@ export const Grid = () => {
     isLoading,
     setIsLoading,
     player2Mode,
-  } = useContext(Puissance4GameContext);
+  } = useContext(Connect4GameContext);
 
   // detect if winner
   useEffect(() => {

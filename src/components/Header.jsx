@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Puissance4GameContext } from "../Puissance4GameContext";
+import { Connect4GameContext } from "../Connect4GameContext";
 import styles from "./Header.module.css";
 
 export const Header = () => {
@@ -12,7 +12,7 @@ export const Header = () => {
     isDraw,
     setIsDraw,
     setWinningCombination,
-  } = useContext(Puissance4GameContext);
+  } = useContext(Connect4GameContext);
 
   const resetGame = () => {
     setGrid(Array(42).fill(null));
@@ -37,13 +37,13 @@ export const Header = () => {
                 } 60%)`,
               }}
             >{`Joueur ${playerTurn}`}</span>
-            <span> : à ton tour !</span>
+            <span>: your turn !</span>
           </>
         )}
-        {isDraw && `Égalité !`}
+        {isDraw && `It's a draw !`}
         {winner && (
           <>
-            <span>Bravo </span>
+            <span>Congrats </span>
             <span
               className={styles.highlight}
               style={{
@@ -53,14 +53,14 @@ export const Header = () => {
                     : "rgba(238, 99, 82, 70%)"
                 } 60%)`,
               }}
-            >{`Joueur ${winner}`}</span>
+            >{`Player ${winner}`}</span>
             <span> !</span>
           </>
         )}
       </h1>
       {(winner || isDraw) && (
         <button className={styles.button} onClick={resetGame}>
-          Rejouer
+          Play again
         </button>
       )}
     </div>

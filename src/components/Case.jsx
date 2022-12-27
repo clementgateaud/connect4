@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Puissance4GameContext } from "../Puissance4GameContext";
+import { Connect4GameContext } from "../Connect4GameContext";
 import { getCaseToFill } from "../utils";
 import classNamesMaker from "classnames";
 import styles from "./Case.module.css";
@@ -14,7 +14,7 @@ export const Case = ({ owner, index }) => {
     setIsLoading,
     isLoading,
     player2Mode,
-  } = useContext(Puissance4GameContext);
+  } = useContext(Connect4GameContext);
 
   const handleCaseClick = () => {
     if ((player2Mode && playerTurn === 2) || isLoading || winningCombination) {

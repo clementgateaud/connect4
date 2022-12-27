@@ -3,7 +3,7 @@ import styles from "./App.module.css";
 import { Header } from "./components/Header";
 import { Grid } from "./components/Grid";
 import { Footer } from "./components/Footer";
-import { Puissance4GameContext } from "./Puissance4GameContext";
+import { Connect4GameContext } from "./Connect4GameContext";
 
 export const App = () => {
   const [grid, setGrid] = useState(Array(42).fill(null));
@@ -15,11 +15,11 @@ export const App = () => {
   const [player2Mode, setPlayer2Mode] = useState(0);
 
   useEffect(() => {
-    document.title = "Puissance 4";
+    document.title = "Connect 4";
   }, []);
 
   return (
-    <Puissance4GameContext.Provider
+    <Connect4GameContext.Provider
       value={{
         grid,
         setGrid,
@@ -42,6 +42,6 @@ export const App = () => {
         <Grid />
         <Footer />
       </div>
-    </Puissance4GameContext.Provider>
+    </Connect4GameContext.Provider>
   );
 };
