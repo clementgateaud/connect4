@@ -16,9 +16,9 @@ export const Footer = () => {
         value={player2Mode}
       >
         <option value="0">Human</option>
-        <option value="1">Computer - Easy</option>
-        <option value="2">Computer - Medium</option>
-        <option value="3">Computer - Hard</option>
+        <option value="1">Computer - Totally stupid</option>
+        <option value="2">Computer - 8-year-old kid</option>
+        <option value="3">Computer - Einstein</option>
       </select>
     </div>
   );
