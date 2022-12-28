@@ -124,9 +124,26 @@ const getHumanCaseToDo2SidedRow = (grid) => {
 };
 
 const getComputerRandomCaseToPlayAvoidAssist = (grid) => {
+  const numberOfPiecesPlayed = grid.filter((element) => element > 0).length;
+  const ponderatedIndexes1 = [2, 3, 4];
+  const ponderatedIndexes2 = [0, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6];
   for (let i = 0; i < 100; i++) {
     const duplicatedGrid = [...grid];
-    const index = Math.floor(Math.random() * 7);
+    let index = 0;
+    if (numberOfPiecesPlayed < 5) {
+      index =
+        ponderatedIndexes1[
+          Math.floor(Math.random() * ponderatedIndexes1.length)
+        ];
+    } else if (numberOfPiecesPlayed < 5) {
+      index =
+        ponderatedIndexes2[
+          Math.floor(Math.random() * ponderatedIndexes2.length)
+        ];
+    } else {
+      index = Math.floor(Math.random() * 7);
+    }
+
     const caseToFillComputer = getCaseToFill(index, duplicatedGrid);
     if (caseToFillComputer === null) {
       continue;
