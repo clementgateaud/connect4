@@ -4,7 +4,6 @@ import { whoIsTheWinner, getCaseToFill, getComputerCaseToPlay } from "../utils";
 import { Connect4GameContext } from "../Connect4GameContext";
 import { Case } from "./Case";
 import { ReactComponent as SupportSVG } from "../assets/support.svg";
-import fallSound from "../assets/fall.mp3";
 import winSound from "../assets/win.mp3";
 import loseSound from "../assets/lose.mp3";
 import styles from "./Grid.module.css";
@@ -60,11 +59,6 @@ export const Grid = () => {
     newGrid[caseToFill] = playerTurn;
     setGrid(newGrid);
     setIsLoading(true);
-    setTimeout(() => {
-      const fallAudio = new Audio(fallSound);
-      fallAudio.volume = 0.1;
-      fallAudio.play();
-    }, 450);
     setTimeout(() => {
       setPlayerTurn(1);
       setIsLoading(false);
