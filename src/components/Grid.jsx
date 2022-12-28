@@ -46,7 +46,8 @@ export const Grid = () => {
       const loseAudio = new Audio(loseSound);
       loseAudio.play();
     }
-  }, [winner, player2Mode]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [winner]);
 
   // computer playing
   useEffect(() => {
