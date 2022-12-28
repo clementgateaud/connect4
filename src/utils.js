@@ -108,15 +108,27 @@ const getHumanCaseToDo2SidedRow = (grid) => {
   const formattedGrid = removeSideValuesFromArray(grid);
   for (let i = 0; i < combinations.length; i++) {
     const caseToPlay = subArrayIndexInArray(formattedGrid, combinations[i]);
-    if (caseToPlay !== null) {
-      const rowBelowIsPresent =
-        caseToPlay >= 35 ||
+    if (
+      caseToPlay !== null &&
+      // check also is row below exists
+      (caseToPlay >= 35 ||
         ([1, 2].includes(grid[caseToPlay + 7]) &&
-          [1, 2].includes(grid[caseToPlay + 3 + 7]));
-      if (rowBelowIsPresent) {
-        const randomIndex = Math.floor(Math.random() * 2);
+          [1, 2].includes(grid[caseToPlay + 3 + 7])))
+    ) {
+      const duplicatedGrid1 = [...grid];
+      duplicatedGrid1[caseToPlay] = 2;
+      const duplicatedGrid2 = [...grid];
+      duplicatedGrid2[caseToPlay + 3] = 2;
+      if (
+        getHumanCaseToFinishNext(duplicatedGrid1) === null &&
+        getHumanCaseToFinishNext(duplicatedGrid2) === null
+      ) {
         const casesToPlay = [caseToPlay, caseToPlay + 3];
-        return casesToPlay[randomIndex];
+        return casesToPlay[Math.floor(Math.random() * casesToPlay.length)];
+      } else if (getHumanCaseToFinishNext(duplicatedGrid1) === null) {
+        return caseToPlay;
+      } else {
+        return caseToPlay + 3;
       }
     }
   }
