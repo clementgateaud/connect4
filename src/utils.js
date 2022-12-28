@@ -130,12 +130,12 @@ const getComputerRandomCaseToPlayAvoidAssist = (grid) => {
   for (let i = 0; i < 100; i++) {
     const duplicatedGrid = [...grid];
     let index = 0;
-    if (numberOfPiecesPlayed < 5) {
+    if (numberOfPiecesPlayed < 6) {
       index =
         ponderatedIndexes1[
           Math.floor(Math.random() * ponderatedIndexes1.length)
         ];
-    } else if (numberOfPiecesPlayed < 5) {
+    } else if (numberOfPiecesPlayed < 14) {
       index =
         ponderatedIndexes2[
           Math.floor(Math.random() * ponderatedIndexes2.length)
