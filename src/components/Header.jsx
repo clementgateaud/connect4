@@ -12,10 +12,11 @@ export const Header = () => {
     isDraw,
     setIsDraw,
     setWinningCombination,
+    player2Mode,
   } = useContext(Connect4GameContext);
 
   const resetGame = () => {
-    setGrid(Array(42).fill(null));
+    setGrid(Array(42).fill(0));
     setPlayerTurn(1);
     setWinner(null);
     setIsDraw(false);
@@ -38,10 +39,14 @@ export const Header = () => {
                 } 60%)`,
               }}
             >{`Player ${playerTurn}`}</span>
-            <span> : your turn !</span>
+            <span>
+              {playerTurn === 2 && player2Mode > 0
+                ? " is playing !"
+                : " : your turn !"}
+            </span>
           </>
         )}
-        {winner && (
+        {(winner === 1 || (winner === 2 && player2Mode === 0)) && (
           <>
             <span>Congrats </span>
             <span
@@ -57,6 +62,7 @@ export const Header = () => {
             <span> !</span>
           </>
         )}
+        {winner === 2 && player2Mode > 0 && <span>You lost :( </span>}
       </h1>
       {(winner || isDraw) && (
         <button className={styles.button} onClick={resetGame}>

@@ -6,7 +6,7 @@ import { Footer } from "./components/Footer";
 import { Connect4GameContext } from "./Connect4GameContext";
 
 export const App = () => {
-  const [grid, setGrid] = useState(Array(42).fill(null));
+  const [grid, setGrid] = useState(Array(42).fill(0));
   const [playerTurn, setPlayerTurn] = useState(1);
   const [winner, setWinner] = useState(null);
   const [winningCombination, setWinningCombination] = useState(null);

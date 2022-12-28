@@ -1,7 +1,8 @@
 import { useContext } from "react";
+import classNamesMaker from "classnames";
 import { Connect4GameContext } from "../Connect4GameContext";
 import { getCaseToFill } from "../utils";
-import classNamesMaker from "classnames";
+import fallSound from "../assets/fall.mp3";
 import styles from "./Case.module.css";
 
 export const Case = ({ owner, index }) => {
@@ -22,11 +23,16 @@ export const Case = ({ owner, index }) => {
     }
     const caseToFill = getCaseToFill(index, grid);
     // if column is not already full
-    if (typeof caseToFill === "number") {
+    if (caseToFill !== null) {
       setIsLoading(true);
       const newGrid = [...grid];
       newGrid[caseToFill] = playerTurn;
       setGrid(newGrid);
+      setTimeout(() => {
+        const fallAudio = new Audio(fallSound);
+        fallAudio.volume = 0.1;
+        fallAudio.play();
+      }, 450);
       setTimeout(() => {
         setPlayerTurn(playerTurn === 1 ? 2 : 1);
         setIsLoading(false);

@@ -7,8 +7,8 @@ export const getCaseToFill = (index, grid) => {
   for (let i = 0; i < 6; i++) {
     columnCases.unshift(column + 7 * i);
   }
-  // return first case from the bottom that is null
-  return columnCases.find((index) => !grid[index]);
+  // return first case from the bottom that is 0
+  return columnCases.find((index) => grid[index] === 0) || null;
 };
 
 export const getComputerCaseToPlay = (grid, player2Mode) => {
@@ -38,7 +38,7 @@ export const whoIsTheWinner = (grid) => {
     });
     if (
       realValuesArray.every(
-        (element) => element === realValuesArray[0] && element !== null
+        (element) => element === realValuesArray[0] && element > 0
       )
     ) {
       winningCombinations.push(combination);
@@ -57,10 +57,9 @@ export const whoIsTheWinner = (grid) => {
 
   const winner = winningCombination ? grid[winningCombination[0]] : null;
 
-  // it's a draw if all grid elements are truthy
-  const isDraw = !winningCombination && grid.every((element) => element);
+  // it's a draw if all grid elements are > 0
+  const isDraw = !winningCombination && grid.every((element) => element > 0);
 
-  console.log({ winningCombinations, winningCombination, winner, isDraw });
   return { winningCombination, winner, isDraw };
 };
 
@@ -68,7 +67,7 @@ const getHumanCaseToFinishNext = (grid) => {
   for (let i = 0; i < 7; i++) {
     const duplicatedGrid = [...grid];
     const caseToFillHuman = getCaseToFill(i, duplicatedGrid);
-    if (typeof caseToFillHuman !== "number") {
+    if (caseToFillHuman === null) {
       continue;
     }
     duplicatedGrid[caseToFillHuman] = 1;
@@ -83,7 +82,7 @@ const getComputerCaseToFinishNext = (grid) => {
   for (let i = 0; i < 7; i++) {
     const duplicatedGrid = [...grid];
     const caseToFillComputer = getCaseToFill(i, duplicatedGrid);
-    if (typeof caseToFillComputer !== "number") {
+    if (caseToFillComputer === null) {
       continue;
     }
     duplicatedGrid[caseToFillComputer] = 2;
@@ -95,10 +94,6 @@ const getComputerCaseToFinishNext = (grid) => {
 };
 
 const getHumanCaseToDo2SidedRow = (grid) => {
-  const replaceNullInArray = (arr) => {
-    // replace null by 0 (because null becomes empty when stringifying)
-    return arr.map((item) => (item === null ? 0 : item));
-  };
   const removeSideValuesFromArray = (arr) => {
     // replace first and last column values by "X"
     return arr.map((item, index) =>
@@ -110,13 +105,9 @@ const getHumanCaseToDo2SidedRow = (grid) => {
     [0, 1, 1, 0],
     [0, 1, 1, "X"],
   ];
-  const formattedGrid = removeSideValuesFromArray(replaceNullInArray(grid));
+  const formattedGrid = removeSideValuesFromArray(grid);
   for (let i = 0; i < combinations.length; i++) {
-    const formattedCombination = replaceNullInArray(combinations[i]);
-    const caseToPlay = subArrayIndexInArray(
-      formattedGrid,
-      formattedCombination
-    );
+    const caseToPlay = subArrayIndexInArray(formattedGrid, combinations[i]);
     if (caseToPlay !== null) {
       const rowBelowIsPresent =
         caseToPlay >= 35 ||
@@ -137,7 +128,7 @@ const getComputerRandomCaseToPlayAvoidAssist = (grid) => {
     const duplicatedGrid = [...grid];
     const index = Math.floor(Math.random() * 7);
     const caseToFillComputer = getCaseToFill(index, duplicatedGrid);
-    if (typeof caseToFillComputer !== "number") {
+    if (caseToFillComputer === null) {
       continue;
     }
     duplicatedGrid[caseToFillComputer] = 2;
@@ -154,7 +145,7 @@ const getRandomCaseToPlay = (grid) => {
     const duplicatedGrid = [...grid];
     const index = Math.floor(Math.random() * 7);
     const caseToFillComputer = getCaseToFill(index, duplicatedGrid);
-    if (typeof caseToFillComputer !== "number") {
+    if (caseToFillComputer === null) {
       continue;
     } else {
       return index;

@@ -4,6 +4,9 @@ import { whoIsTheWinner, getCaseToFill, getComputerCaseToPlay } from "../utils";
 import { Connect4GameContext } from "../Connect4GameContext";
 import { Case } from "./Case";
 import { ReactComponent as SupportSVG } from "../assets/support.svg";
+import fallSound from "../assets/fall.mp3";
+import winSound from "../assets/win.mp3";
+import loseSound from "../assets/lose.mp3";
 import styles from "./Grid.module.css";
 
 export const Grid = () => {
@@ -35,6 +38,17 @@ export const Grid = () => {
     };
   }, [grid, setWinner, setWinningCombination, setIsDraw]);
 
+  useEffect(() => {
+    if (winner === 1 || (winner === 2 && player2Mode === 0)) {
+      const winAudio = new Audio(winSound);
+      winAudio.play();
+    }
+    if (winner === 2 && player2Mode > 0) {
+      const loseAudio = new Audio(loseSound);
+      loseAudio.play();
+    }
+  }, [winner, player2Mode]);
+
   // computer playing
   useEffect(() => {
     if (!player2Mode || isLoading || winningCombination || playerTurn === 1) {
@@ -46,6 +60,11 @@ export const Grid = () => {
     newGrid[caseToFill] = playerTurn;
     setGrid(newGrid);
     setIsLoading(true);
+    setTimeout(() => {
+      const fallAudio = new Audio(fallSound);
+      fallAudio.volume = 0.1;
+      fallAudio.play();
+    }, 450);
     setTimeout(() => {
       setPlayerTurn(1);
       setIsLoading(false);
@@ -79,7 +98,10 @@ export const Grid = () => {
     <div className={styles.main}>
       <div className={styles.gridBody}>
         <div className={styles.confettiContainer}>
-          <Confetti active={winner} config={CONFETTI_CONFIG} />
+          <Confetti
+            active={winner === 1 || (winner === 2 && player2Mode === 0)}
+            config={CONFETTI_CONFIG}
+          />
         </div>
         <SupportSVG className={styles.support} fill="var(--color-support)" />
         <div className={styles.cases}>
