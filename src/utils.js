@@ -13,18 +13,18 @@ export const getCaseToFill = (index, grid) => {
 
 export const getComputerCaseToPlay = (grid, player2Mode) => {
   let caseToPlay = null;
+  caseToPlay = getComputerCaseToFinishNext(grid);
+  if (caseToPlay !== null) return caseToPlay;
+  caseToPlay = getHumanCaseToFinishNext(grid);
+  if (caseToPlay !== null) return caseToPlay;
+
   if (player2Mode > 1) {
-    caseToPlay = getComputerCaseToFinishNext(grid);
-    if (caseToPlay !== null) return caseToPlay;
-    caseToPlay = getHumanCaseToFinishNext(grid);
-    if (caseToPlay !== null) return caseToPlay;
-  }
-  if (player2Mode > 2) {
     caseToPlay = getHumanCaseToDo2SidedRow(grid);
     if (caseToPlay !== null) return caseToPlay;
     caseToPlay = getComputerRandomCaseToPlayAvoidAssist(grid);
     if (caseToPlay !== null) return caseToPlay;
   }
+
   caseToPlay = getRandomCaseToPlay(grid);
   return caseToPlay;
 };
