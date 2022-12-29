@@ -4,6 +4,7 @@ import styles from "./Header.module.css";
 
 export const Header = () => {
   const {
+    grid,
     setGrid,
     playerTurn,
     setPlayerTurn,
@@ -13,11 +14,14 @@ export const Header = () => {
     setIsDraw,
     setWinningCombination,
     player2Mode,
+    playerStarting,
+    setPlayerStarting,
   } = useContext(Connect4GameContext);
 
   const resetGame = () => {
     setGrid(Array(42).fill(0));
-    setPlayerTurn(1);
+    setPlayerStarting((prev) => (prev === 1 ? 2 : 1));
+    setPlayerTurn(playerStarting);
     setWinner(null);
     setIsDraw(false);
     setWinningCombination(null);
@@ -64,11 +68,9 @@ export const Header = () => {
         )}
         {winner === 2 && player2Mode > 0 && <span>You lost :( </span>}
       </h1>
-      {(winner || isDraw) && (
-        <button className={styles.button} onClick={resetGame}>
-          Play again
-        </button>
-      )}
+      <button className={styles.button} onClick={resetGame}>
+        Restart
+      </button>
     </div>
   );
 };

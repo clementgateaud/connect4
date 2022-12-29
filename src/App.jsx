@@ -7,7 +7,8 @@ import { Connect4GameContext } from "./Connect4GameContext";
 
 export const App = () => {
   const [grid, setGrid] = useState(Array(42).fill(0));
-  const [playerTurn, setPlayerTurn] = useState(1);
+  const [playerStarting, setPlayerStarting] = useState(1);
+  const [playerTurn, setPlayerTurn] = useState(playerStarting);
   const [winner, setWinner] = useState(null);
   const [winningCombination, setWinningCombination] = useState(null);
   const [isDraw, setIsDraw] = useState(false);
@@ -35,6 +36,8 @@ export const App = () => {
         setIsLoading,
         player2Mode,
         setPlayer2Mode,
+        playerStarting,
+        setPlayerStarting,
       }}
     >
       <div className={styles.main}>
