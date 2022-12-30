@@ -8,7 +8,11 @@ export const getCaseToFill = (index, grid) => {
     columnCases.unshift(column + 7 * i);
   }
   // return first case from the bottom that is 0
-  return columnCases.find((index) => grid[index] === 0) || null;
+  const caseToFill = columnCases.find((index) => grid[index] === 0);
+  if (typeof caseToFill === "undefined") {
+    return null;
+  }
+  return caseToFill;
 };
 
 export const getComputerCaseToPlay = (grid, player2Mode) => {
