@@ -15,10 +15,6 @@ export const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [player2Mode, setPlayer2Mode] = useState(0);
 
-  useEffect(() => {
-    document.title = "Connect 4";
-  }, []);
-
   return (
     <Connect4GameContext.Provider
       value={{

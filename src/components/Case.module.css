@@ -1,6 +1,7 @@
 .main {
   aspect-ratio: 1;
   position: relative;
+  border-radius: 50%;
 }
 
 .player1Case,
