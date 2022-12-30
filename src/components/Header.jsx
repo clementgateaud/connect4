@@ -4,7 +4,6 @@ import styles from "./Header.module.css";
 
 export const Header = () => {
   const {
-    grid,
     setGrid,
     playerTurn,
     setPlayerTurn,
