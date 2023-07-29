@@ -1,4 +1,3 @@
-
 ## Try it out
 
 https://connect4-clement.netlify.app/
